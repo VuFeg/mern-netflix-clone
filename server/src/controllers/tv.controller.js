@@ -1,9 +1,9 @@
 import { fetchFromTMDB } from "../services/tmdb.service.js";
 
-export const getTrendingMovieController = async (req, res) => {
+export const getTrendingTvController = async (req, res) => {
   try {
     const data = await fetchFromTMDB(
-      "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
+      "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
     );
     const randomMovie =
       data.results[Math.floor(Math.random() * data.results.length)];
@@ -14,11 +14,11 @@ export const getTrendingMovieController = async (req, res) => {
   }
 };
 
-export const getMovieTrailersController = async (req, res) => {
+export const getTvTrailersController = async (req, res) => {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`
     );
 
     res.status(200).json({ success: true, data: data.results });
@@ -30,11 +30,11 @@ export const getMovieTrailersController = async (req, res) => {
   }
 };
 
-export const getMovieDetailsController = async (req, res) => {
+export const getTvDetailsController = async (req, res) => {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}?language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}?language=en-US`
     );
 
     res.status(200).json({ success: true, data: data });
@@ -46,11 +46,11 @@ export const getMovieDetailsController = async (req, res) => {
   }
 };
 
-export const getSimilarMoviesController = async (req, res) => {
+export const getSimilarTvsController = async (req, res) => {
   const { id } = req.params;
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}/similar?language=en-US`
     );
 
     res.status(200).json({ success: true, data: data.results });
@@ -62,11 +62,11 @@ export const getSimilarMoviesController = async (req, res) => {
   }
 };
 
-export const getMoviesByCategoryController = async (req, res) => {
+export const getTvsByCategoryController = async (req, res) => {
   const { category } = req.params;
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`
     );
 
     res.status(200).json({ success: true, data: data.results });
