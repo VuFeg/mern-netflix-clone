@@ -2,14 +2,20 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/genarateTokenAndSetCookie.js";
 
-export const registerController = async (req, res) => {
+export const signupController = async (req, res) => {
   try {
-    const { userName, email, password } = req.body;
+    const { userName, email, password, passwordConfirmation } = req.body;
 
-    if (!userName || !email || !password) {
+    if (!userName || !email || !password || !passwordConfirmation) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
+    }
+
+    if (password !== passwordConfirmation) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Passwords do not match" });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -130,8 +136,6 @@ export const authCheckController = async (req, res) => {
   } catch (error) {
     console.log("Error in authCheck controller", error.message);
 
-    return res
-      .status(500)
-      .json({ success: false, message: "Internal server error" });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
