@@ -8,7 +8,7 @@ export const getTrendingTvController = async (req, res) => {
     const randomMovie =
       data.results[Math.floor(Math.random() * data.results.length)];
 
-    res.status(200).json({ success: true, data: randomMovie });
+    res.status(200).json({ success: true, content: randomMovie });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }

@@ -8,7 +8,7 @@ export const useAuthUser = create((set) => ({
   isCheckingAuth: true,
   isLoggingOut: false,
   isLoggingIn: false,
-  signup: async (credentials: any) => {
+  signup: async (credentials: object) => {
     set({ isSigningUp: true });
     try {
       const response = await axios.post("/api/auth/signup", credentials);
@@ -20,7 +20,7 @@ export const useAuthUser = create((set) => ({
       set({ isSigningUp: false, user: null });
     }
   },
-  login: async (credentials: any) => {
+  login: async (credentials: object) => {
     set({ isLoggingIn: true });
     try {
       const response = await axios.post("/api/auth/login", credentials);
@@ -44,8 +44,8 @@ export const useAuthUser = create((set) => ({
     }
   },
   authCheck: async () => {
+    set({ isCheckingAuth: true });
     try {
-      set({ isCheckingAuth: true });
       const response = await axios.get("/api/auth/auth-check");
 
       set({ user: response.data.user, isCheckingAuth: false });

@@ -8,8 +8,7 @@ import { useAuthUser } from "./store/authUser";
 import { useEffect } from "react";
 
 export default function App() {
-  const { user, isCheckingAuth, authCheck }: any = useAuthUser();
-  console.log({ user, isCheckingAuth });
+  const { user, authCheck }: any = useAuthUser();
 
   useEffect(() => {
     authCheck();
