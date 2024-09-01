@@ -4,12 +4,12 @@ import {
   authCheckController,
   logInController,
   logOutController,
-  signupController,
+  registerController,
 } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.post("/signup", signupController);
+router.post("/register", registerController);
 router.post("/login", logInController);
 router.post("/logout", logOutController);
 
