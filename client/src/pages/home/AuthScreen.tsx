@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/images/netflix-logo.png";
+import logo from "../../assets/images/netflix-logo.png";
 import React from "react";
 import { ChevronRight } from "lucide-react";
-import tv from "../assets/images/tv.png";
-import herovideo from "../assets/videos/hero-vid.mp4";
-import strangerThingsLg from "../assets/images/stranger-things-lg.png";
-import strangerThingsSm from "../assets/images/stranger-things-sm.png";
-import downloadIcon from "../assets/images/download-icon.gif";
-import devicePile from "../assets/images/device-pile.png";
-import videoDevices from "../assets/videos/video-devices.mp4";
-import imgKids from "../assets/images/kids.png";
+import tv from "../../assets/images/tv.png";
+import herovideo from "../../assets/videos/hero-vid.mp4";
+import strangerThingsLg from "../../assets/images/stranger-things-lg.png";
+import strangerThingsSm from "../../assets/images/stranger-things-sm.png";
+import downloadIcon from "../../assets/images/download-icon.gif";
+import devicePile from "../../assets/images/device-pile.png";
+import videoDevices from "../../assets/videos/video-devices.mp4";
+import imgKids from "../../assets/images/kids.png";
 
 const AuthScreen = () => {
   const [email, setEmail] = React.useState("");
@@ -17,7 +17,7 @@ const AuthScreen = () => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/signup?email=" + email);
+    navigate("/register?email=" + email);
   };
 
   return (

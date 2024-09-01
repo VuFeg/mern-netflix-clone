@@ -1,31 +1,45 @@
-import { Navbar } from "../components/Navbar";
+import { Navbar } from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import { Info, Play } from "lucide-react";
-import { useGetTrendingContent } from "../hooks/useGetTrendingContent";
-import { ORIGINAL_IMAGE_BASE_URL } from "../utils/constant";
+import { useGetTrendingContent } from "../../hooks/useGetTrendingContent";
+import {
+  MOVIE_CATEGORIES,
+  ORIGINAL_IMAGE_BASE_URL,
+  TV_CATEGORIES,
+} from "../../utils/constant";
+import { useContentStore } from "../../store/content";
+import { MovieSlider } from "../../components/MovieSlider";
+import { useState } from "react";
 
 const HomeScreen = () => {
   const { trendingContent }: any = useGetTrendingContent();
-  console.log(trendingContent);
+  const { contentType }: any = useContentStore();
+  const [imgLoading, setImgLoading] = useState(true);
 
   // TODO: Add a loading spinner
-  if (trendingContent)
+  if (!trendingContent) {
     return (
       <div className="relative h-screen text-white">
         <Navbar />
         <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
       </div>
     );
+  }
 
   return (
     <>
       <div className="relative h-screen text-white">
         <Navbar />
 
+        {imgLoading && (
+          <div className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer" />
+        )}
+
         <img
           src={ORIGINAL_IMAGE_BASE_URL + trendingContent?.backdrop_path}
           alt={trendingContent?.title || trendingContent?.name}
           className="absolute top-0 left-0 -z-50 w-full h-full object-cover"
+          onLoad={() => setImgLoading(false)}
         />
         <div
           className="absolute top-0 left-0 w-full h-full bg-black/50 -z-40"
@@ -67,6 +81,16 @@ const HomeScreen = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-col gap-10 bg-black py-10">
+        {contentType === "movie"
+          ? MOVIE_CATEGORIES.map((category) => (
+              <MovieSlider key={category} category={category} />
+            ))
+          : TV_CATEGORIES.map((category) => (
+              <MovieSlider key={category} category={category} />
+            ))}
       </div>
     </>
   );

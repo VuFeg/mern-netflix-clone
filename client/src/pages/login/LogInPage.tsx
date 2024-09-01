@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoNetflix from "../assets/images/netflix-logo.png";
-import { useAuthUser } from "../store/authUser";
+import logoNetflix from "../../assets/images/netflix-logo.png";
+import { useAuthUser } from "../../store/authUser";
 
 const LogInPage = () => {
   const [email, setEmail] = React.useState("");
@@ -72,7 +72,7 @@ const LogInPage = () => {
 
           <div className="text-center text-gray-400">
             Don't have an account?{" "}
-            <Link to={"/signup"} className="text-red-500 hover:underline">
+            <Link to={"/register"} className="text-red-500 hover:underline">
               Sign Up
             </Link>
           </div>

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoNetflix from "../assets/images/netflix-logo.png";
-import { useAuthUser } from "../store/authUser";
+import logoNetflix from "../../assets/images/netflix-logo.png";
+import { useAuthUser } from "../../store/authUser";
 
-const SignUpPage = () => {
+const RegisterPage = () => {
   const { searchParams } = new URL(window.location.href);
   const emailValue = searchParams.get("email") || "";
 
@@ -123,4 +123,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default RegisterPage;

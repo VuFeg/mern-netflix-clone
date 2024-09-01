@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./home/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import LogInPage from "./pages/LogInPage";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 import { useAuthUser } from "./store/authUser";
 import { useEffect } from "react";
+import HomePage from "./pages/home/HomePage";
+import LogInPage from "./pages/login/LogInPage";
+import RegisterPage from "./pages/register/RegisterPage";
 
 export default function App() {
   const { user, authCheck }: any = useAuthUser();
@@ -23,7 +23,7 @@ export default function App() {
         />
         <Route
           path="/signup"
-          element={!user ? <SignUpPage /> : <Navigate to={"/"} />}
+          element={!user ? <RegisterPage /> : <Navigate to={"/"} />}
         />
       </Routes>
       <Footer />

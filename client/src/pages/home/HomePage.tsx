@@ -1,4 +1,4 @@
-import { useAuthUser } from "../store/authUser";
+import { useAuthUser } from "../../store/authUser";
 import AuthScreen from "./AuthScreen";
 import HomeScreen from "./HomeScreen";
 
