@@ -1,18 +1,19 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
+import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useAuthUser } from "./store/authUser";
-import { useEffect } from "react";
+import Footer from "./components/Footer";
 import HomePage from "./pages/home/HomePage";
 import LogInPage from "./pages/login/LogInPage";
 import RegisterPage from "./pages/register/RegisterPage";
+import { WatchPage } from "./pages/watch/WatchPage";
 
 export default function App() {
   const { user, authCheck }: any = useAuthUser();
 
   useEffect(() => {
     authCheck();
-  }, []);
+  }, [authCheck]);
   return (
     <>
       <Routes>
@@ -24,6 +25,10 @@ export default function App() {
         <Route
           path="/signup"
           element={!user ? <RegisterPage /> : <Navigate to={"/"} />}
+        />
+        <Route
+          path="/watch/:id"
+          element={user ? <WatchPage /> : <Navigate to={"/login"} />}
         />
       </Routes>
       <Footer />
